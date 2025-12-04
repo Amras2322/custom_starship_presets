@@ -1,0 +1,123 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[░▒▓](#2a475e)\
+[  ](fg:#c7d5e0 bg:#2a475e)\
+[](fg:#2a475e bg:#243B50)\
+$directory\
+[](fg:#243B50 bg:#1F3042)\
+$git_branch\
+$git_status\
+[](fg:#1F3042 bg:#1A2634)\
+$nodejs\
+$rust\
+$golang\
+$php\
+[](fg:#1A2634 bg:#171a21)\
+$time\
+[ ](fg:#171a21)\
+$fill\
+[](#171a21)\
+ $battery\
+[ ](fg:#171a21)\
+\n$character"""
+
+
+[fill]
+symbol = " "
+
+#####################
+# Directory
+#####################
+
+[directory]
+style = "fg:#c7d5e0 bg:#243B50"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music"     = " "
+"Pictures"  = " "
+
+#####################
+# Git
+#####################
+
+[git_branch]
+symbol = ""
+style = "bg:#19212D"
+format = '[[ $symbol $branch ](fg:#c7d5e0 bg:#19212D)]($style)'
+
+[git_status]
+style = "bg:#19212D"
+format = '[[($all_status$ahead_behind )](fg:#c7d5e0 bg:#19212D)]($style)'
+
+#####################
+# Runtimes
+#####################
+
+[nodejs]
+symbol = ""
+style = "bg:#1A2634"
+format = '[[ $symbol ($version) ](fg:#c7d5e0 bg:#1A2634)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:#1A2634"
+format = '[[ $symbol ($version) ](fg:#c7d5e0 bg:#212736)]($style)'
+
+[golang]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#c7d5e0 bg:#212736)]($style)'
+
+[php]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#c7d5e0 bg:#212736)]($style)'
+
+#####################
+# Time (right block)
+#####################
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute
+style = "bg:#171a21"
+format = '[[  $time ](fg:#c7d5e0 bg:#171a21)]($style)'
+
+#####################
+# Battery (right block)
+#####################
+
+[battery]
+disabled = false
+full_symbol        = " "
+charging_symbol    = "⚡ "
+discharging_symbol = " "
+unknown_symbol     = " "
+empty_symbol       = " "
+format = '[$symbol$percentage]($style)'
+
+[[battery.display]]
+threshold = 20
+style = "fg:#ff5c5c bg:#171a21"
+
+[[battery.display]]
+threshold = 50
+style = "fg:#ecaf3d bg:#171a21"
+
+[[battery.display]]
+threshold = 100
+style = "fg:#41e064 bg:#171a21"
+
+#####################
+# Prompt character
+#####################
+
+[character]
+success_symbol = "[❯](bold #66c0f4)"
+error_symbol   = "[❯](bold #ff5c5c)"
